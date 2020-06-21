@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:ringScale="http://schemas.android.com/apk/res-auto"
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginLeft="16dp"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal"
+        >
+        <com.ui.common.view.RingScaleSlideView
+            android:id="@+id/slide_ring_scale_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            ringScale:slideScaleLineCount="50"
+            />
+        <com.ui.common.view.RingScaleView
+            android:id="@+id/ring_scale_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            ringScale:scaleLineCount="100"
+            ringScale:scaleLineWidth="2"
+            android:layout_marginTop="42dp"
+            />
+    </LinearLayout>
+
+    <com.ui.common.view.SeekControllerView
+        android:id="@+id/seek_controller"
+        android:layout_width="46dp"
+        android:layout_height="350dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="42dp"
+        android:layout_centerVertical="true"
+        >
+    </com.ui.common.view.SeekControllerView>
+
+</RelativeLayout>

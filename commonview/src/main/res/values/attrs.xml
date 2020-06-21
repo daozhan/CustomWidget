@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GeometricFigureView">
+        <!-- 基本图形API绘制类型-->
+        <attr name="draw_type" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="ImageCircleView">
+        <attr name="border_width" format="dimension" />
+        <attr name="border_color" format="color" />
+        <attr name="border_overlay" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="RingScaleView">
+        <!-- 刻度线的总数-->
+        <attr name="scaleLineCount" format="integer"/>
+        <!-- 普通刻度线的长度-->
+        <attr name="scaleLineLength" format="integer"/>
+        <!-- 特殊刻度线的长度-->
+        <attr name="specialScaleLineLength" format="integer"/>
+        <!-- 线条的宽度-->
+        <attr name="scaleLineWidth" format="integer"/>
+        <!-- 刻度线距离圆环的宽度-->
+        <attr name="scaleToRingSpace" format="integer"/>
+        <!-- 普通线的颜色-->
+        <attr name="scaleLineNormalCorlor" format="integer"/>
+        <!-- 起始线的颜色-->
+        <attr name="beginLineNormalCorlor" format="integer"/>
+
+        <!-- 过圆心的圆弧的背景-->
+        <attr name="slideRingCorlor" format="integer"/>
+        <!-- 底部圆的背景-->
+        <attr name="ringBgCorlor" format="integer"/>
+        <!-- 当前文字的背景-->
+        <attr name="wordCorlor" format="integer"/>
+        <!-- 当前文字的大小-->
+        <attr name="wordSize" format="integer"/>
+        <!-- 圆的半径-->
+        <attr name="radius" format="integer"/>
+
+        <!-- 最大显示进度-->
+        <attr name="maxProgress" format="integer"/>
+        <!-- 最小显示进度-->
+        <attr name="minProgress" format="integer"/>
+        <!-- 当前显示进度-->
+        <attr name="progress" format="integer"/>
+
+        <!-- 外围提示字的颜色-->
+        <attr name="outWordColor" format="integer"/>
+        <!-- 外围提示字的大小-->
+        <attr name="outWordSize" format="integer"/>
+        <!-- 外围提示字的宽度-->
+        <attr name="outWordWidth" format="integer"/>
+        <!-- 外围提示字的高度-->
+        <attr name="outWordHeight" format="integer"/>
+
+        <!-- 内部提示字的颜色-->
+        <attr name="inputWordColor" format="integer"/>
+        <!-- 内部提示字的大小-->
+        <attr name="inputWordSize" format="integer"/>
+        <!-- 内部提示字的间隔-->
+        <attr name="inputWordSpace" format="integer"/>
+    </declare-styleable>
+
+    <declare-styleable name="SildeRingScaleView">
+        <!--圆环的宽度-->
+        <attr name="slideRingWidth" format="float"/>
+        <!--滑动圆弧的背景-->
+        <attr name="slideRingCorlor2" format="integer"/>
+        <!--底部圆弧的背景-->
+        <attr name="slideRingBgCorlor" format="integer"/>
+        <!--当前文字的背景-->
+        <attr name="slideWordCorlor" format="integer"/>
+        <!--当前文字的大小-->
+        <attr name="slideWordSize" format="integer"/>
+        <!--同心圆外圆的半径-->
+        <attr name="slideRadius" format="integer"/>
+        <!--最大显示进度-->
+        <attr name="slideMaxProgress" format="integer"/>
+        <!--最小显示进度-->
+        <attr name="slideMinProgress" format="integer"/>
+        <!--当前显示进度-->
+        <attr name="slideProgress" format="integer"/>
+
+        <!--刻度线的总数-->
+        <attr name="slideScaleLineCount" format="integer"/>
+        <!--普通刻度线的长度-->
+        <attr name="slideScaleLineLength" format="integer"/>
+        <!--特殊刻度线的长度-->
+        <attr name="slideSpecialScaleLineLength" format="integer"/>
+        <!--线条的宽度-->
+        <attr name="slideScaleLineWidth" format="integer"/>
+        <!--刻度线距离圆环的宽度-->
+        <attr name="slideScaleToRingSpace" format="integer"/>
+        <!--普通线的颜色-->
+        <attr name="slideScaleLineNormalCorlor" format="integer"/>
+        <!--特殊线的颜色-->
+        <attr name="slideSpecialScaleCorlor" format="integer"/>
+    </declare-styleable>
+</resources>

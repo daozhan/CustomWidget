@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/left_layout"
+        android:layout_width="68dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="96dp"
+        android:layout_marginBottom="96dp"
+        android:layout_marginLeft="24dp"
+        android:orientation="vertical"
+        android:background="@drawable/figure_view_bg">
+
+        <TextView
+            android:id="@+id/view_line"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="线"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_rect"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="矩形"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_circle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="圆形"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_oval"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="椭圆"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_round_rect"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="圆角矩形"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_arc"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="扇形"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_more_figure"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="多边形"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_color"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="填充颜色"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_text"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="文本"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_bitmap"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="bitmap"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_crop"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="裁剪"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_rotate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="旋转"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#fff" />
+
+        <TextView
+            android:id="@+id/view_translate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:text="平移"
+            android:gravity="center_vertical"
+            android:textColor="#fff"
+            android:textSize="15sp"
+            android:paddingLeft="4dp" />
+
+    </LinearLayout>
+
+    <com.ui.common.view.GeometricFigureView
+        android:id="@+id/view_figure"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_toRightOf="@id/left_layout"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="36dp"
+        android:background="#b0c4de"
+        />
+
+</RelativeLayout>
