@@ -6,6 +6,7 @@
     >
 
     <com.mjzuo.common.widget.DDViewGroup
+        android:id="@+id/dd_view_group"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         didi:header_id="@+id/t_map_view"

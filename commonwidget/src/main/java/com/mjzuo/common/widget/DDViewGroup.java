@@ -67,6 +67,9 @@ public class DDViewGroup extends ViewGroup {
     // 500ms内: 像素数 * 0.3
     private int vyPxCount;
 
+    // mTargetView距离顶部距离监听
+    private IScrollListener mListener;
+
     public DDViewGroup(Context context) {
         this(context, null);
     }
@@ -112,6 +115,13 @@ public class DDViewGroup extends ViewGroup {
         mScroller.setFriction(0.9f);
 
         childDrawOrder();
+    }
+
+    /**
+     * 设置滑动距离监听
+     */
+    public void setOnScrollListener(IScrollListener listener) {
+        this.mListener = listener;
     }
 
     /**
@@ -417,6 +427,11 @@ public class DDViewGroup extends ViewGroup {
         // HeaderView的top、bottom两个方向都是加上offsetY
         ViewCompat.offsetTopAndBottom(mHeaderView, headerTarget - mHeaderCurrTop);
         mHeaderCurrTop = headerTarget;
+
+        if (mListener != null) {
+            mListener.onTargetToTopDistance(mTargetCurrTop);
+            mListener.onHeaderToTopDistance(mHeaderCurrTop);
+        }
     }
 
     private void finishDrag(int vyPxCount) {
@@ -487,5 +502,13 @@ public class DDViewGroup extends ViewGroup {
             mVelocityTracker.recycle();
             mVelocityTracker = null;
         }
+    }
+
+    /**
+     * TargetView距离顶部距离监听
+     */
+    public interface IScrollListener {
+        void onTargetToTopDistance(int distance);
+        void onHeaderToTopDistance(int distance);
     }
 }

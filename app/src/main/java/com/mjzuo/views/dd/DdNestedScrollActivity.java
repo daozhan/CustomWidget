@@ -2,6 +2,7 @@ package com.mjzuo.views.dd;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.mjzuo.common.widget.DDViewGroup;
 import com.mjzuo.views.R;
 import com.tencent.tencentmap.mapsdk.maps.MapView;
 
@@ -28,10 +30,13 @@ import java.util.ArrayList;
  */
 public class DdNestedScrollActivity extends AppCompatActivity {
 
+    static final String LOG_TAG = ">>dd";
+
     // 腾讯地图MAP
     private MapView mapView;
 
     private RecyclerView recyclerView;
+    private DDViewGroup ddViewGroup;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -41,10 +46,23 @@ public class DdNestedScrollActivity extends AppCompatActivity {
 
         mapView = findViewById(R.id.t_map_view);
         recyclerView = findViewById(R.id.inner_rv);
+        ddViewGroup = findViewById(R.id.dd_view_group);
 
         LinearLayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(new DdNestedScrollActivity.MyRvAdapter());
+
+        ddViewGroup.setOnScrollListener(new DDViewGroup.IScrollListener() {
+            @Override
+            public void onTargetToTopDistance(int distance) {
+                Log.e(LOG_TAG, "target top :" + distance);
+            }
+
+            @Override
+            public void onHeaderToTopDistance(int distance) {
+                Log.e(LOG_TAG, "header top :" + distance);
+            }
+        });
 
     }
 
