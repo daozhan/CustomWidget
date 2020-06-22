@@ -33,6 +33,7 @@ public class DDViewGroup extends ViewGroup {
     private int mTargetInitTop;
     private int mHeaderCurrTop;
     private int mTargetCurrTop;
+    private int mTargetInitBottom;
 
     // VIEW
     private View mHeaderView;
@@ -78,7 +79,7 @@ public class DDViewGroup extends ViewGroup {
         super(context, attrs, defStyleAttr);
 
         // 获取配置参数
-        TypedArray array = context.getTheme().obtainStyledAttributes(attrs
+        final TypedArray array = context.getTheme().obtainStyledAttributes(attrs
                 , R.styleable.DDViewGroup
                 , defStyleAttr, 0);
         mHeaderResId = array.getResourceId
@@ -94,10 +95,12 @@ public class DDViewGroup extends ViewGroup {
         mHeaderInitTop = Utils.dip2px(getContext()
                 , array.getInt(R.styleable.DDViewGroup_header_init_top, 0));
         mHeaderCurrTop = mHeaderInitTop;
-        // 屏幕高度 - 底部距离
-        mTargetInitTop = Utils.getScreenHeight(getContext())
-                - Utils.dip2px(getContext()
-                    , array.getInt(R.styleable.DDViewGroup_target_init_bottom, 0));
+        // 屏幕高度 - 底部距离 - 状态栏高度
+        mTargetInitBottom = Utils.dip2px(getContext()
+                , array.getInt(R.styleable.DDViewGroup_target_init_bottom, 0));
+        // 注意：当前activity默认去掉了标题栏
+        mTargetInitTop = Utils.getScreenHeight(getContext()) - mTargetInitBottom
+                - Utils.getStatusBarHeight(getContext().getApplicationContext());
         mTargetCurrTop = mTargetInitTop;
 
         ViewConfiguration vc = ViewConfiguration.get(getContext());
@@ -132,14 +135,36 @@ public class DDViewGroup extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        final int scrollWidthMeasureSpec = MeasureSpec.makeMeasureSpec
-                (getMeasuredWidth() - getPaddingLeft() - getPaddingRight()
-                        , MeasureSpec.EXACTLY);
-        final int scrollHeightMeasureSpec = MeasureSpec.makeMeasureSpec
-                (getMeasuredHeight() - getPaddingTop() - getPaddingBottom()
-                        , MeasureSpec.EXACTLY);
-        mTargetView.measure(scrollWidthMeasureSpec, scrollHeightMeasureSpec);
-        measureChild(mHeaderView, widthMeasureSpec, heightMeasureSpec);
+
+        // 计算子VIEW的尺寸
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+
+        int widthModle = MeasureSpec.getMode(widthMeasureSpec);
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        int heightModle = MeasureSpec.getMode(heightMeasureSpec);
+        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+
+        switch (widthModle) {
+            case MeasureSpec.AT_MOST:
+            case MeasureSpec.UNSPECIFIED:
+                // TODO:wrap_content 暂不考虑
+                break;
+
+            case MeasureSpec.EXACTLY:
+                // 全屏或者固定尺寸
+                break;
+        }
+
+        switch (heightModle) {
+            case MeasureSpec.UNSPECIFIED:
+            case MeasureSpec.AT_MOST:
+                break;
+
+            case MeasureSpec.EXACTLY:
+                break;
+        }
+
+        setMeasuredDimension(widthSize, heightSize);
     }
 
     @Override
@@ -150,10 +175,12 @@ public class DDViewGroup extends ViewGroup {
         final int width = getMeasuredWidth();
         final int height = getMeasuredHeight();
 
+        // 注意：原始bottom不是height高度，而是又向下挪了mTargetInitTop
         mTargetView.layout(getPaddingLeft()
                 , getPaddingTop() + mTargetCurrTop
                 , width - getPaddingRight()
-                , height - getPaddingBottom() + mTargetCurrTop);
+                , height + mTargetCurrTop
+                        + getPaddingTop() + getPaddingBottom());
 
         int headerWidth = mHeaderView.getMeasuredWidth();
         int headerHeight = mHeaderView.getMeasuredHeight();
@@ -171,7 +198,7 @@ public class DDViewGroup extends ViewGroup {
             mScroller.forceFinished(true);
 
         // 不拦截事件，将事件传递给TargetView
-        if (canChildScrollUp())
+        if (canChildScrollDown())
             return false;
 
         int action = event.getAction();
@@ -191,6 +218,7 @@ public class DDViewGroup extends ViewGroup {
                 } else {
                     startDragging(y);
                 }
+
                 break;
 
             case MotionEvent.ACTION_UP:
@@ -205,7 +233,7 @@ public class DDViewGroup extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
 
-        if (canChildScrollUp())
+        if (canChildScrollDown())
             return false;
 
         // 添加速度监听
@@ -301,7 +329,7 @@ public class DDViewGroup extends ViewGroup {
      * <li>负数：实际是判断手指能否向下滑动
      * </ul>
      */
-    public boolean canChildScrollUp() {
+    public boolean canChildScrollDown() {
         RecyclerView rv;
         // 当前只做了RecyclerView的适配
         if (mInnerScrollView instanceof RecyclerView) {
@@ -324,13 +352,32 @@ public class DDViewGroup extends ViewGroup {
     }
 
     /**
+     * 向上能够滑动的距离顶部距离。
+     *
+     * <p>如果Item数量太少，导致rv不能占满一屏时，
+     * 注意向上滑动的距离。
+     */
+    public int toTopMaxOffset() {
+        final RecyclerView rv;
+        if (mInnerScrollView instanceof RecyclerView) {
+            rv = (RecyclerView) mInnerScrollView;
+            if (android.os.Build.VERSION.SDK_INT >= 14) {
+
+                return Math.max(0, mTargetInitTop -
+                        (rv.computeVerticalScrollRange() - mTargetInitBottom));
+            }
+        }
+        return 0;
+    }
+
+    /**
      * 手指向下滑动或TargetView距离顶部距离>0，
      * 则ViewGroup拦截事件。
      *
-     * <p>targetView拦截也需见{@link #canChildScrollUp}
+     * <p>targetView拦截也需见{@link #canChildScrollDown}
      */
     private void startDragging(float y) {
-        if (y > mDownY || mTargetCurrTop > 0) {
+        if (y > mDownY || mTargetCurrTop > toTopMaxOffset()) {
             final float yDiff = Math.abs(y - mDownY);
             if (yDiff > mTouchSlop && !mIsDragging) {
                 mLastMotionY = mDownY + mTouchSlop;
@@ -348,7 +395,7 @@ public class DDViewGroup extends ViewGroup {
     }
 
     private void moveTargetViewTo(int target) {
-        target = Math.max(target, 0);
+        target = Math.max(target, toTopMaxOffset());
         if (target >= mTargetInitTop)
             target = mTargetInitTop;
         // TargetView的top、bottom两个方向都是加上offsetY
@@ -388,7 +435,7 @@ public class DDViewGroup extends ViewGroup {
                 invalidate();
             }
         }
-        // 速度 > 0，说明正向上滚动
+        // 速度 < 0，说明正向上滚动
         else if (vyPxCount < 0) {
             if (mTargetCurrTop <= 0) {
                 if (mScroller.getCurrVelocity() > 0) {

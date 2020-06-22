@@ -39,4 +39,20 @@ public class Utils {
                 .getResources().getDisplayMetrics();
         return dm.widthPixels;
     }
+
+    /**
+     * 获取获取系统状态栏高度。
+     *
+     * @param appContext APP的上下文
+     * @return 状态栏高度
+     */
+    public static int getStatusBarHeight(Context appContext) {
+        int result = 0;
+        int resourceId = appContext.getResources().getIdentifier
+                ("status_bar_height", "dimen", "android");
+        if (resourceId > 0) {
+            result = appContext.getResources().getDimensionPixelSize(resourceId);
+        }
+        return result;
+    }
 }

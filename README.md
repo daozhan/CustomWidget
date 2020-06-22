@@ -2,15 +2,15 @@
 
 ## 列表
 
-![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;&nbsp;&nbsp;基础绘制API示例
+![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;基础绘制API示例
 
-![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;&nbsp;&nbsp;刻度条用法
+![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;刻度条用法
 
-![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;&nbsp;&nbsp;仿滴滴上车点和大头针动画
+![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;仿滴滴上车点和大头针动画
 
-![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;&nbsp;&nbsp;仿网易云音乐鲸云音效
+![#6495ED](https://placehold.it/15/6495ED/000000?text=+)&nbsp;&nbsp;仿网易云音乐鲸云音效
 
-![#6CBE89](https://placehold.it/15/6CBE89/000000?text=+)&nbsp;&nbsp;&nbsp;&nbsp;仿滴滴首页嵌套滑动
+![#6CBE89](https://placehold.it/15/6CBE89/000000?text=+)&nbsp;&nbsp;仿滴滴首页嵌套滑动
 
 ## 详情
 
@@ -19,7 +19,7 @@
 这个示例的意图是想总结一下，在自定义view开发中常被我们所用到的api方法。之所以有了这个想法，是因为自定义view写的多了，总感觉掌握的知识点越来越杂，毫无章法。所以也就有了这么一个想串串知识点的念头。
 
 <p align="left">
-  <img width="260" height="450" src="https://github.com/MingJieZuo/CustomViewCollection/blob/master/app/src/main/assets/imgfolder/figure_view.gif">
+  <img width="260" height="450" src="/app/src/main/assets/imgfolder/figure_view.gif">
 </p>
 
 ### 刻度条用法
@@ -29,7 +29,7 @@
 拖动的实现是在规定的区域内，当手指按下，手指滑动，手指弹起时，不断绘制对应的进度p，给人一种圆环被拖着动画的错觉，其实这只是不断重绘的结果。通过onTouchEvent方法来监听手势及获取当前坐标即可。难点在于这是一个弧形轨迹，我们怎么通过当前坐标来获取角度，再根据角度获取相对应的进度。需要注意的是，在我们拖动小图标时，我们需要定一个特定的接收事件的区域范围，只有当用户按在了规定的可滑动区域内，才能让用户拖动进度条，并不是在任意位置都能拖动小图标改变进度的，具体代码可查看示例。
 
 <p align="left">
-  <img width="300" height="580" src="https://github.com/MingJieZuo/CustomViewCollection/blob/master/app/src/main/assets/imgfolder/scale.gif">
+  <img width="300" height="580" src="/app/src/main/assets/imgfolder/scale.gif">
 </p>
 
 ### 仿滴滴上车点和大头针动画
@@ -39,7 +39,7 @@
 大头针的加载动画和底部波纹扩散效果，是通过内部handler定时绘制的，每次改变半径和颜色。View的跳动动画这里选择通过AnimatorSet组合动画来实现。至于推荐上车点的圆点文字及描边效果也是通过View绘制实现的，具体代码可查看示例。
 
 <p align="left">
-  <img width="260" height="450" src="https://github.com/MingJieZuo/CustomViewCollection/blob/master/app/src/main/assets/imgfolder/spot.gif">
+  <img width="260" height="450" src="/app/src/main/assets/imgfolder/spot.gif">
 </p>
 
 ### 仿网易云音乐鲸云音效
@@ -49,5 +49,5 @@
 动感环绕效果是由四段贝塞尔曲线来拟合实现的。但这种方式出来的效果跟真正的动感环绕差别很大，所以鲸云音效不太可能是由这种方式实现的。如果有更贴近的实现方法，希望不吝赐教。运动中的圆环，是不断的随机更改控制点的坐标，并为起始点添加偏移量的结果，这是一个不断调试的过程…，需要不断调整控制点来控制凸起的幅度，很难找到一个完美的效果。
 
 <p align="left">
-  <img width="300" height="580" src="https://github.com/MingJieZuo/CustomViewCollection/blob/master/app/src/main/assets/imgfolder/bmusic.gif">
+  <img width="300" height="580" src="/app/src/main/assets/imgfolder/bmusic.gif">
 </p>

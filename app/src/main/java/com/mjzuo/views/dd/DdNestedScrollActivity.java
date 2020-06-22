@@ -1,9 +1,11 @@
 package com.mjzuo.views.dd;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -34,6 +36,7 @@ public class DdNestedScrollActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestNoTitle(this);
         setContentView(R.layout.dd_nested_scroll_layout);
 
         mapView = findViewById(R.id.t_map_view);
@@ -43,6 +46,14 @@ public class DdNestedScrollActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(manager);
         recyclerView.setAdapter(new DdNestedScrollActivity.MyRvAdapter());
 
+    }
+
+    protected void requestNoTitle(Activity activity) {
+        if (activity instanceof AppCompatActivity) {
+            ((AppCompatActivity)activity).getSupportActionBar().hide();
+        } else {
+            activity.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        }
     }
 
     @Override
@@ -88,7 +99,7 @@ public class DdNestedScrollActivity extends AppCompatActivity {
 
             if(cvData.size() != 0)
                 cvData.clear();
-            for (int i = 0; i < 3; i++) {
+            for (int i = 0; i < 20; i++) {
                 String content = "第" + i + "项";
                 cvData.add(content);
             }
@@ -98,7 +109,7 @@ public class DdNestedScrollActivity extends AppCompatActivity {
         @Override
         public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             View view = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.main_rv_item_layout, parent, false);
+                    .inflate(R.layout.common_rv_item_layout, parent, false);
             return new ViewHolder(view);
         }
 
