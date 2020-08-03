@@ -1,1 +1,1 @@
-include ':app', ':commonwidget', ':commonview'
+include ':app', ':commonview'

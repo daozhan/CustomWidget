@@ -36,6 +36,5 @@ dependencies {
     // 腾讯地图
     implementation 'com.tencent.map:tencent-map-vector-sdk:4.3.3.5'
 
-    implementation project(':commonwidget')
     implementation project(':commonview')
 }

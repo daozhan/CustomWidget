@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.mjzuo.views.dd.DdNestedScrollActivity;
 import com.mjzuo.views.dd.DdSpotActivity;
 import com.mjzuo.views.figure.FigureViewActivity;
 import com.mjzuo.views.music.MusicActivity;
@@ -35,8 +34,6 @@ public class MainActivity extends BaseActivity {
     public static final int DD_SPOT = 2;
     // 仿网易云音乐鲸云音效示例
     public static final int WY_MUSIC = 3;
-    // 仿滴滴首页嵌套滑动示例
-    public static final int DD_NESTED_SCROLL = 4;
 
     RecyclerView recyclerView;
 
@@ -78,11 +75,6 @@ public class MainActivity extends BaseActivity {
                 toIntent(DdSpotActivity.class);
                 break;
 
-            case DD_NESTED_SCROLL:
-                // 仿滴滴首页嵌套滑动示例
-                toIntent(DdNestedScrollActivity.class);
-                break;
-
             case WY_MUSIC:
                 // 仿网易云音乐鲸云音效示例
                 toIntent(MusicActivity.class);
@@ -113,7 +105,6 @@ public class MainActivity extends BaseActivity {
             cvData.add("刻度条用法");
             cvData.add("仿滴滴上车点和大头针动画");
             cvData.add("仿网易云音乐鲸云音效");
-            cvData.add("仿滴滴首页嵌套滑动");
         }
 
         @NonNull
